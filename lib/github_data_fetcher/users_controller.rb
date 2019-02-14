@@ -1,5 +1,4 @@
 require './lib/models/user_repository'
-require './lib/github_data_fetcher/print_helper'
 
 module GithubDataFetcher
   class UsersController
