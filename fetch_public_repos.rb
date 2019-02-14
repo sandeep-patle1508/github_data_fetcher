@@ -5,4 +5,4 @@ begin
    abort "Could not load 'github_data_fetcher'"
  end
 
-GithubDataFetcher::App.new.run ARGV
+GithubDataFetcher::App.new.run(ARGV)
