@@ -1,11 +1,11 @@
 require 'spec_helper'
-require './lib/models/user'
+require './lib/models/user_repository'
 require './lib/github_api/client'
 
-describe User do
+describe UserRepository do
 
   describe 'initialize' do
-    subject { User.new(params) }
+    subject { UserRepository.new(params) }
     
     context 'when pass valid params' do
       let(:params) { { id: 1, name: 'test', html_url: 'http://test.com' } }
@@ -20,8 +20,8 @@ describe User do
         expect { subject }.not_to raise_error
       end
 
-      it 'should be return object of User' do
-        expect(subject).to be_an_instance_of(User)
+      it 'should be return object of UserRepository' do
+        expect(subject).to be_an_instance_of(UserRepository)
       end
     end
 
@@ -67,7 +67,7 @@ describe User do
       )
     end
 
-    subject { User.get_public_repos(user_name) }
+    subject { UserRepository.get_public_repos(user_name) }
 
     context 'when valid user name pass' do
       let(:user_name) { 'valid_user' }
@@ -80,11 +80,11 @@ describe User do
         expect(subject).to be_an_instance_of(Array)
       end
 
-      it 'should return array of User object' do
-        expect(subject.first).to be_an_instance_of(User)
+      it 'should return array of UserRepository object' do
+        expect(subject.first).to be_an_instance_of(UserRepository)
       end
 
-      it 'should return array of two User objects' do
+      it 'should return array of two UserRepository objects' do
         expect(subject.size).to eql(2)
       end
 

@@ -1,6 +1,6 @@
 require './lib/github_api/client'
 
-class User
+class UserRepository
   attr_accessor :id, :name, :html_url
 
   def initialize(params)
@@ -20,7 +20,7 @@ class User
 
     if api_response.success?
       api_response.each do |data| 
-        repos << User.new( { id: data['id'], name: data['name'], html_url: data['html_url'] })
+        repos << new( { id: data['id'], name: data['name'], html_url: data['html_url'] })
       end
     end
 
