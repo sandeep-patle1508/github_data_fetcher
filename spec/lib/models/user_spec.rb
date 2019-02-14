@@ -1,5 +1,6 @@
 require 'spec_helper'
 require './lib/models/user'
+require './lib/github_api/client'
 
 describe User do
 
@@ -96,7 +97,7 @@ describe User do
     end
 
     context 'when invalid user name pass' do
-      let(:user_name) { 'valid_user' }
+      let(:user_name) { 'invalid_user' }
 
       it 'should not raise error' do
         expect { subject }.not_to raise_error
@@ -107,7 +108,7 @@ describe User do
       end
 
       it 'should return empty array' do
-        expect(subject.size).to be_empty
+        expect(subject).to be_empty
       end
     end
   end
