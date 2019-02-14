@@ -31,17 +31,17 @@ describe GithubApi::Client do
       )
     end
 
-    subject { JSON.parse(GithubApi::Client.new.get_public_repos(user_name)) }
+    subject { GithubApi::Client.new.get_public_repos(user_name) }
 
     context 'when pass valid user name' do
       let(:user_name) { 'valid_user' }
 
       it 'should return array data' do
-        expect(subject).to be_an_instance_of(Array)
+        expect(subject.parsed_response).to be_an_instance_of(Array)
       end
 
       it 'should return success response' do
-        expect { subject.status }.to eq(200)
+        expect(subject.success?).to be_truthy
       end
 
       it 'should not raise error' do
@@ -53,11 +53,11 @@ describe GithubApi::Client do
       let(:user_name) { 'invalid_user' }
 
       it 'should return error hash' do
-        expect(subject).to be_an_instance_of(Hash)
+        expect(subject.parsed_response).to be_an_instance_of(Hash)
       end
 
       it 'should return not found error status' do
-        expect { subject.status }.to eq(404)
+        expect(subject.not_found?).to be_truthy
       end
 
       it 'should not raise error' do
