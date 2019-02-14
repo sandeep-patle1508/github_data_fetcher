@@ -53,7 +53,7 @@ describe GithubDataFetcher::UsersController do
       end
 
       it 'should display error message on STDOUT' do
-        expect { subject }.to output('Not able to find public repository for this user').to_stdout
+        expect { subject }.to output("Not able to find public repositories for this user\n").to_stdout
       end
     end
   end
